@@ -16,6 +16,18 @@ app.get("/", (request, response) => {
   });
 });
 
+app.post("/", (request, response) => {
+  response.json({
+    message: "POST request Received!",
+  });
+});
+
+app.post("/bananas", (request, response) => {
+  response.json({
+    message: "POST bananas Received!",
+  });
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server listening on localhost:${PORT}`);
