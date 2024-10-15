@@ -1,38 +1,7 @@
-const express = require("express");
+const { app } = require("./server.js");
 
-// make an instance of the express system
-// So we can configure it
-// eg, routes, settings
-const app = express();
+const PORT = process.env.PORT ?? 3000;
 
-// GET localhost:3000/
-app.get("/", (request, response) => {
-  //sends html
-  //   response.send("<h1>Hello world!<h1>");
-
-  // sends json
-  response.json({
-    message: "Hello World!",
-  });
-});
-
-app.post("/", (request, response) => {
-  response.json({
-    message: "POST request Received!",
-  });
-});
-
-app.post("/bananas", (request, response) => {
-  response.json({
-    message: "POST bananas Received!",
-  });
-});
-
-const PokemonController = require("./controllers/pokemonController.js");
-// localhost:3000/pokemon/
-app.use("/pokemon", PokemonController);
-
-const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server listening on localhost:${PORT}`);
 });
