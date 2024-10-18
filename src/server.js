@@ -6,15 +6,42 @@ const express = require("express");
 const app = express();
 
 // GET localhost:3000/
-app.get("/", (request, response) => {
-  //sends html
-  //   response.send("<h1>Hello world!<h1>");
 
-  // sends json
-  response.json({
-    message: "Hello World!",
-  });
-});
+/*
+instance.verb(routePath, 
+  middleware,
+  middleware,
+  middleware,
+  middleware,
+  route handler)
+*/
+
+function middleware(request, response, next) {
+  console.log("Testing middle is now running!");
+  request.customData = {
+    ...request.customData,
+    middleware: "Test Test",
+  };
+  request.customData.middleware = "testing middleware";
+  next();
+}
+
+app.get(
+  "/",
+  // middleware function goes here
+  middleware,
+
+  (request, response) => {
+    //sends html
+    //   response.send("<h1>Hello world!<h1>");
+
+    // sends json
+    response.json({
+      message: "Hello World!",
+      customStuff: request.customData,
+    });
+  }
+);
 
 app.post("/", (request, response) => {
   response.json({
