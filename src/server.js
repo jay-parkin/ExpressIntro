@@ -5,6 +5,10 @@ const express = require("express");
 // eg, routes, settings
 const app = express();
 
+// configure the app instance for whatever we need
+app.use(express.json());
+
+// and then set up the routes
 // GET localhost:3000/
 
 /*
