@@ -3,6 +3,7 @@ const express = require("express");
 const {
   getOrCreatePokemonNumber,
   getPokeApiData,
+  trimPokeApiData,
 } = require("../middleware/pokeApiMiddleware.js");
 
 // Create an instance of just a router, not a full server
@@ -35,6 +36,7 @@ router.get(
   // middleware goes here
   getOrCreatePokemonNumber,
   getPokeApiData,
+  trimPokeApiData,
 
   // middleware is finished by here
   (request, response) => {
