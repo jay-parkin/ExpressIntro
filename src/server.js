@@ -43,17 +43,24 @@ app.get(
   }
 );
 
-app.post("/", (request, response) => {
+app.post("/", middleware, (request, response) => {
   response.json({
     message: "POST request Received!",
   });
 });
 
-app.post("/bananas", (request, response) => {
-  response.json({
-    message: "POST bananas Received!",
-  });
-});
+app.post(
+  "/bananas",
+  (request, response, next) => {
+    console.log("bananas route has run");
+    next();
+  },
+  (request, response) => {
+    response.json({
+      message: "POST bananas Received!",
+    });
+  }
+);
 
 const PokemonController = require("./controllers/pokemonController.js");
 // localhost:3000/pokemon/
